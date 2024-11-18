@@ -1,11 +1,26 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
 
-body,
-html {
-  background-color: var(--bs-gray-100) !important;
-}
-
 .card {
   border: none !important;
+}
+
+.modal-dialog {
+  border: none !important;
+}
+
+.body {
+  height: 10rem !important;
+}
+
+.modal-content {
+  border: none !important;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.form-select:focus {
+  box-shadow: none !important;
 }

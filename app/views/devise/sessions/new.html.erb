@@ -1,0 +1,29 @@
+<div class="vh-100 vw-100">
+  <div class="row g-0 vh-100 d-flex justify-content-center align-items-center">
+    <div class="col-11 col-lg-4 position-fixed">
+      <div class="card p-3">
+        <div class="card-body text-center">
+          <%= image_tag 'key.png', class: 'img-fluid mb-5', width: '120' %>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="input-group mb-3">
+              <%= f.label :email, class: "input-group-text", for: "email" %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "email" %>
+            </div>
+            <div class="input-group my-3">
+              <%= f.label :password, class: "input-group-text", for: "password" %><br />
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "password" %>
+            </div>
+            <% if alert %>
+              <p class="text-danger">
+                <%= alert %>
+              </p>
+            <% end %>
+            <div class="w-100 mt-3">
+              <%= f.submit "Log in", class: "btn btn-success w-100" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

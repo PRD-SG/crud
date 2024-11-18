@@ -8,3 +8,9 @@ if User.count.zero?
   )
   user.add_role :admin
 end
+
+if Category.count.zero?
+  %w[ทั่วไป อาหาร ช๊อปปิ้ง].each do |name|
+    Category.create(name: name)
+  end
+end
