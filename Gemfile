@@ -39,7 +39,7 @@ gem "bootsnap", require: false
 gem "devise", "~> 4.9"
 gem "rolify"
 gem 'cancancan'
-gem 'rails_admin', '~> 3.0.0'
+gem 'rails_admin', '~> 3.2.1'
 gem "sassc-rails"
 
 group :development, :test do
