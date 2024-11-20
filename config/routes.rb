@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :logs, only: %i[index create] do
     collection do
       get :all
+      get :report
     end
   end
 

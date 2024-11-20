@@ -2,7 +2,7 @@
 
 class LogsController < ApplicationController
   def index
-    @logs = Log.current_month.last(10)
+    @logs = Log.current_month.last(25).group_by(&:date)
     @income = Log.current_month.where(log_type: :income).sum(:value)
     @expenses = Log.current_month.where(log_type: :expenses).sum(:value)
   end
@@ -17,7 +17,16 @@ class LogsController < ApplicationController
   end
 
   def all
-    @logs = Log.current_month
+    @logs = Log.current_month.group_by(&:date)
+  end
+
+  def report
+    return if params[:start_date].blank? || params[:end_date].blank?
+
+    start_date = Date.parse(params[:start_date]).beginning_of_day
+    end_date = Date.parse(params[:end_date]).end_of_day
+
+    @logs = Log.where(date: start_date..end_date).group_by(&:date)
   end
 
   private

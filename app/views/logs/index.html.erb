@@ -3,50 +3,60 @@
         <div class="col-12 p-0 py-2 m-0">
             <h1 class="m-0">Money Tracking</h1>
         </div>
-        <div class="col-12 mt-4 bg-dark body rounded-4 shadow p-4 d-flex align-items-center">
+        <div class="col-12 mt-3 bg-dark body rounded-4 shadow p-4 d-flex align-items-center">
             <div class="row vw-100">
-                <div class="col-6 text-light text-center">
-                    <h3>InCome</h3>
-                </div>
-                <div class="col-6 text-light text-center">
-                    <h3>Expenses</h3>
+                <div class="col-12 text-light text-center m-0 mb-3">
+                    <label class="fs-1">฿ <%= @income - @expenses %></>
                 </div>
                 <div class="col-6 text-light text-center opacity-75">
-                    <h3>฿ <%= @income %></h3>
+                    <label class="fs-5">InCome</label>
                 </div>
                 <div class="col-6 text-light text-center opacity-75">
-                    <h3>฿ <%= @expenses %></h3>
+                    <label class="fs-5">Expenses</label>
+                </div>
+                <div class="col-6 text-light text-center opacity-75">
+                    <label class="fs-5">฿ <%= @income %></label>
+                </div>
+                <div class="col-6 text-light text-center opacity-75">
+                    <label class="fs-5">฿ <%= @expenses %></label>
                 </div>
             </div>
-            
         </div>
         <div class="col-12 g-0">
             <div class="row">
-                <div class="col-12 mt-4">
+                <div class="col-6 mt-4">
                     <button class="btn btn-dark opacity-75 w-100 p-2 rounded-4 shadow p-2" 
                             data-action="click->logs#openDialog"
                             type="button">
                         <i class="bi bi-plus-circle-dotted fs-3"></i>
                     </button>
                 </div>
+                <div class="col-6 mt-4">
+                    <%= link_to report_logs_path, class: "btn btn-dark opacity-75 w-100 p-2 rounded-4 shadow p-2" do %>
+                        <i class="bi bi-clipboard-data fs-3"></i>
+                    <% end %>
+                </div>
             </div>
         </div>
         <div class="col-12 g-0">
             <div class="row">
                 <div class="col-12 d-flex justify-content-between align-items-center mt-4">
-                    <h4 class="mt-2">Expenses</h4>
+                    <h5 class="mt-2">Expenses</h5>
                     <%= link_to "View All", all_logs_path, class: "btn btn-light rounded shadow-sm" %>
                 </div>
-                <% for log in @logs %>
-                    <div class="col-12 d-flex justify-content-between align-items-center mt-4">
-                        <div class="d-flex">
-                            <button class="btn btn-light rounded shadow-sm px-3"><i class="bi bi-coin fs-4"></i></button>
-                            <span class="ms-3 mt-1">
-                                <h5 class="m-0 p-0"><%= log.title %> (<%= log.category.name %>)</h5>
-                                <p class="opacity-75 m-0 p-0"><%= log.date.strftime("%d/%m/%Y %H:%M") %></p>
-                            </span>
+                <% for date, logs in @logs %>
+                    <div class="col-12 mt-4">
+                        <div class="card">
+                            <ul class="list-group">
+                            <li class="list-group-item"><b><%= date.strftime("%B %d, %Y") %></b></li>
+                            <% for log in logs %>
+                                <li class="list-group-item">
+                                    <span class="float-start"><%= log.title %></span>
+                                    <span class="float-end"><%= number_to_currency(log.value, precision: 2) %> </span>
+                                </li>
+                            <% end %>
+                            </ul>
                         </div>
-                        <h5 class="m-0 p-0">฿ <%= log.value %></h5>
                     </div>
                 <% end %>
             </div>
@@ -54,4 +64,4 @@
     </div>
 </div>
 
-<%= render "dialog" %>
+<%= render "create" %>

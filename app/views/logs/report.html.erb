@@ -1,0 +1,56 @@
+<div class="container-fluid g-0" data-controller="logs">
+    <div class="row p-4 m-0">
+        <div class="col-12 p-0 py-2 m-0">
+            <%= link_to logs_path do %>
+                <h1 class="m-0 d-flex align-items-center text-dark"><i class="bi bi-caret-left-fill fs-3 m-0 p-0"></i></i> Report</h1>
+            <% end %>
+        </div>
+        <div class="col-12 mt-3 g-0">
+            <%= form_with url: report_logs_path, method: :get do |f| %>
+                <div class="row">
+                    <div class="col-6 mt-3">
+                        <div class="form-floating">
+                            <%= f.date_field :start_date, datetime: 'YYYY-MM-DD', class: "form-control", placeholder: "Start Date", value: params[:start_date] || Time.zone.now %>
+                            <%= f.label :start_date, class: "form-label" %>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <div class="form-floating">
+                                <%= f.date_field :end_date, datetime: 'YYYY-MM-DD', class: "form-control", placeholder: "End Date", value: params[:end_date] || Time.zone.now %>
+                                <%= f.label :end_date, class: "form-label" %>
+                            </div>
+                        </div>
+                    <div class="col-6 mt-3">
+                        <%= button_tag type: 'submit', class: "btn btn-dark btn-lg w-100" do %>
+                            <i class="bi bi-search me-2"></i>
+                        <% end %>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <%= link_to '<i class="bi bi-trash me-2"></i>'.html_safe, report_logs_path, class: "btn btn-danger btn-lg w-100" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <% if @logs %>
+            <div class="col-12 mt-4 g-0">
+                <div class="row">
+                    <% for date, logs in @logs %>
+                        <div class="col-12 mb-4">
+                            <div class="card">
+                                <ul class="list-group">
+                                <li class="list-group-item"><b><%= date.strftime("%B %d, %Y") %></b></li>
+                                <% for log in logs %>
+                                    <li class="list-group-item">
+                                        <span class="float-start"><%= log.title %></span>
+                                        <span class="float-end"><%= number_to_currency(log.value, precision: 2) %> </span>
+                                    </li>
+                                <% end %>
+                                </ul>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container-fluid g-0" data-controller="logs">
+    <div class="row p-4 m-0">
+        <div class="col-12 p-0 py-2 m-0">
+            <%= link_to logs_path do %>
+                <h1 class="m-0 d-flex align-items-center text-dark"><i class="bi bi-caret-left-fill fs-3 m-0 p-0"></i></i> Report</h1>
+            <% end %>
+        </div>
+        <div class="col-12 mt-4 g-0">
+            <div class="row">
+                <% for date, logs in @logs %>
+                    <div class="col-12 mb-4">
+                        <div class="card">
+                            <ul class="list-group">
+                            <li class="list-group-item"><b><%= date.strftime("%B %d, %Y") %></b></li>
+                            <% for log in logs %>
+                                <li class="list-group-item">
+                                    <span class="float-start"><%= log.title %></span>
+                                    <span class="float-end"><%= number_to_currency(log.value, precision: 2) %> </span>
+                                </li>
+                            <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
