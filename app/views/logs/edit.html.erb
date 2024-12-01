@@ -1,0 +1,16 @@
+<div class="container-fluid g-0 p-3" data-controller="logs">
+    <div class="row g-0">
+        <div class="col-4 p-0 py-2 m-0 text-dark">
+            <%= link_to logs_path do %>
+                <i class="bi bi-caret-left-fill fs-3 text-dark text-start"></i>
+            <% end %>
+        </div>
+        <div class="col-4 p-0 py-2 m-0 text-center"><h1>Edit</h1></div>
+        <div class="col-4"></div>
+        <div class="col-12 g-0">
+            <%= render "form" %>
+        </div>
+    </div>
+</div>
+
+<%= render "confirmation" %>

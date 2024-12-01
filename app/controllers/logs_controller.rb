@@ -7,6 +7,14 @@ class LogsController < ApplicationController
     @expenses = Log.current_month.where(log_type: :expenses).sum(:value)
   end
 
+  def new 
+    @log = Log.new
+  end
+
+  def edit
+    @log = Log.find_by(id: params[:id])
+  end
+
   def create
     log = Log.new(log_params)
     if log.save
@@ -16,6 +24,20 @@ class LogsController < ApplicationController
     end
   end
 
+  def update
+    log = Log.find_by(id: params[:id])
+    if log.update(log_params)
+      redirect_to logs_path
+    else
+      render :index, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    log = Log.find_by(id: params[:id])
+    log.destroy
+    redirect_to logs_path
+  end
   def all
     @logs = Log.current_month.group_by(&:date)
   end

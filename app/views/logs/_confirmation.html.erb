@@ -1,0 +1,21 @@
+<div class="modal fade" id="confirmation" tabindex="-1" aria-labelledby="createExpenseLabel" aria-hidden="true" data-controller="logs">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="p-3 text-center">
+                    <i class="bi bi-exclamation-circle text-danger warning-icon"></i>
+                </div>
+                <p class="text-center mb-4">Are you sure you want to delete this log?</p>
+                
+                <div class="row mt-2">
+                    <div class="col-6">
+                         <%= button_tag '<i class="bi bi-x-lg"></i>'.html_safe, type: 'button', class: "btn btn-lg btn-dark rounded-4 w-100", data: { bs_dismiss: "modal" } %>
+                    </div>
+                    <div class="col-6">
+                        <%= button_to '<i class="bi bi-trash"></i>'.html_safe, log_path(@log), method: :delete, class: "btn btn-lg btn-danger rounded-4 w-100" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

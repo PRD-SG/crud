@@ -1,7 +1,7 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
 
-.card {
+.card-custom {
   border: none !important;
 }
 
@@ -27,4 +27,8 @@
 
 a {
   text-decoration: none !important;
+}
+
+.warning-icon {
+  font-size: 5rem !important;
 }
